@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Lỗi - NASA Space Explorer{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2>Oops! Có lỗi xảy ra</h2>
+            </div>
+            <div class="card-body text-center">
+                <i class="fas fa-satellite fa-5x mb-3 text-muted"></i>
+                <h3>{{ error }}</h3>
+                <p class="lead">Houston, chúng ta có vấn đề!</p>
+                <p>Trang bạn đang tìm kiếm có thể đã bị di chuyển, xóa hoặc tạm thời không khả dụng.</p>
+                <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">
+                    <i class="fas fa-home"></i> Quay lại trang chính
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

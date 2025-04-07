@@ -1,0 +1,29 @@
+<div class="tab-pane fade" id="space-weather" role="tabpanel">
+    <div class="card mt-3">
+        <div class="card-header">
+            <h5>Thời tiết không gian - Phun trào vật chất từ Mặt Trời (CME)</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="space-weather-start" class="form-label">Ngày bắt đầu:</label>
+                    <input type="date" class="form-control" id="space-weather-start">
+                </div>
+                <div class="col-md-4">
+                    <label for="space-weather-end" class="form-label">Ngày kết thúc (tối đa 30 ngày):</label>
+                    <input type="date" class="form-control" id="space-weather-end">
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary" id="fetch-space-weather">Tìm kiếm</button>
+                </div>
+            </div>
+            <div id="space-weather-result">
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle"></i> Hiện tượng phun trào vật chất từ Mặt Trời (CME)</h5>
+                    <p>CME là những vụ phun trào khối lượng lớn plasma và từ trường từ vành Mặt Trời.</p>
+                </div>
+                <div id="space-weather-events"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="tab-pane fade" id="mars" role="tabpanel">
+    <div class="card mt-3">
+        <div class="card-header">
+            <h5>Ảnh từ Sao Hỏa</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="mars-rover" class="form-label">Tàu thăm dò:</label>
+                    <select class="form-select" id="mars-rover">
+                        <option value="curiosity">Curiosity</option>
+                        <option value="opportunity">Opportunity</option>
+                        <option value="spirit">Spirit</option>
+                        <option value="perseverance">Perseverance</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="mars-sol" class="form-label">Sol (ngày Sao Hỏa):</label>
+                    <input type="number" class="form-control" id="mars-sol" value="1000" min="0">
+                </div>
+                <div class="col-md-3">
+                    <label for="mars-camera" class="form-label">Camera:</label>
+                    <select class="form-select" id="mars-camera">
+                        <option value="">Tất cả</option>
+                        <option value="FHAZ">Front Hazard</option>
+                        <option value="RHAZ">Rear Hazard</option>
+                        <option value="MAST">Mast</option>
+                        <option value="CHEMCAM">ChemCam</option>
+                        <option value="NAVCAM">Navigation</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-primary" id="fetch-mars">Tìm kiếm</button>
+                </div>
+            </div>
+            <div id="mars-result" class="row"></div>
+        </div>
+    </div>
+</div>

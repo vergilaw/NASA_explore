@@ -1,0 +1,70 @@
+<div class="tab-pane fade" id="satellites" role="tabpanel">
+    <div class="card mt-3">
+        <div class="card-header">
+            <h5>Theo dõi vệ tinh</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="satellite-id" class="form-label">ID vệ tinh:</label>
+                    <select class="form-select" id="satellite-id">
+                        <option value="25544" selected>ISS - 25544</option>
+                        <option value="20580">Hubble - 20580</option>
+                        <option value="48274">Starlink-1597 - 48274</option>
+                        <option value="33591">NOAA-19 - 33591</option>
+                        <option value="43013">TESS - 43013</option>
+                        <option value="27424">Envisat - 27424</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="custom-satellite-id" class="form-label">Hoặc nhập ID tùy chỉnh:</label>
+                    <input type="text" class="form-control" id="custom-satellite-id" placeholder="Nhập ID vệ tinh">
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-primary" id="fetch-satellite">Tìm kiếm</button>
+                </div>
+            </div>
+            <div id="satellite-result">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-dark">
+                            <div class="card-header">
+                                <h5 id="satellite-name">Thông tin vệ tinh</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="satellite-info"></div>
+                            </div>
+                        </div>
+                        <div class="card bg-dark mt-3">
+                            <div class="card-header">
+                                <h5>Dữ liệu TLE</h5>
+                            </div>
+                            <div class="card-body">
+                                <pre id="satellite-tle" class="text-light"></pre>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-outline-success btn-sm" id="add-satellite-favorite"><i class="fas fa-heart"></i> Thêm vào yêu thích</button>
+                            <button class="btn btn-outline-info btn-sm" id="add-satellite-note"><i class="fas fa-sticky-note"></i> Thêm ghi chú</button>
+                            <div id="satellite-note-container" class="mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-dark">
+                            <div class="card-header">
+                                <h5>Vị trí vệ tinh trên bản đồ</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="satellite-map" style="height: 400px; width: 100%; border-radius: 5px;"></div>
+                                <div class="mt-3">
+                                    <h6>Vị trí hiện tại:</h6>
+                                    <p id="satellite-position">Đang chờ dữ liệu...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

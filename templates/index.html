@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}NASA Space Explorer - Khám phá Vũ trụ{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12 text-center">
+        <h1 class="display-4 mb-3">NASA Space Explorer</h1>
+        <p class="lead">Khám phá vũ trụ với dữ liệu trực tiếp từ NASA</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <i class="fas fa-satellite fa-2x text-info"></i>
+            <h2 class="stat-number" id="satellite-count">1</h2>
+            <p>Vệ tinh theo dõi</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <i class="fas fa-meteor fa-2x text-warning"></i>
+            <h2 class="stat-number" id="asteroid-count">0</h2>
+            <p>Tiểu hành tinh gần Trái Đất</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <i class="fas fa-sun fa-2x text-danger"></i>
+            <h2 class="stat-number" id="space-weather-count">0</h2>
+            <p>Hiện tượng thời tiết không gian</p>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="apod-tab" data-bs-toggle="tab" data-bs-target="#apod" type="button" role="tab">
+            <i class="fas fa-star"></i> Ảnh thiên văn trong ngày
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="mars-tab" data-bs-toggle="tab" data-bs-target="#mars" type="button" role="tab">
+            <i class="fas fa-space-shuttle"></i> Ảnh từ Sao Hỏa
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="earth-tab" data-bs-toggle="tab" data-bs-target="#earth" type="button" role="tab">
+            <i class="fas fa-globe"></i> Ảnh Trái Đất
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="asteroids-tab" data-bs-toggle="tab" data-bs-target="#asteroids" type="button" role="tab">
+            <i class="fas fa-meteor"></i> Tiểu hành tinh
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="library-tab" data-bs-toggle="tab" data-bs-target="#library" type="button" role="tab">
+            <i class="fas fa-photo-video"></i> Thư viện NASA
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="satellites-tab" data-bs-toggle="tab" data-bs-target="#satellites" type="button" role="tab">
+            <i class="fas fa-satellite"></i> Vệ tinh
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="space-weather-tab" data-bs-toggle="tab" data-bs-target="#space-weather" type="button" role="tab">
+            <i class="fas fa-sun"></i> Thời tiết không gian
+        </button>
+    </li>
+</ul>
+
+<div id="loading">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="tab-content" id="myTabContent">
+    {% include 'partials/apod.html' %}
+    {% include 'partials/mars.html' %}
+    {% include 'partials/earth.html' %}
+    {% include 'partials/asteroids.html' %}
+    {% include 'partials/library.html' %}
+    {% include 'partials/satellites.html' %}
+    {% include 'partials/space_weather.html' %}
+</div>
+{% endblock %}

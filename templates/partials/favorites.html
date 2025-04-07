@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Danh sách yêu thích - NASA Space Explorer{% endblock %}
+
+{% block content %}
+<div class="card mt-3">
+    <div class="card-header">
+        <h5>Danh sách yêu thích</h5>
+    </div>
+    <div class="card-body">
+        <div id="favorites-list" class="row">
+            {% if favorites %}
+                {% for fav in favorites %}
+                    <div class="col-md-4 mb-3" id="favorite-{{ fav.type }}-{{ fav.id }}">
+                        <div class="card h-100">
+                            {% if fav.type == 'apod' %}
+                                <img src="{{ fav.data.hdurl or fav.data.url }}" class="card-img-top" alt="{{ fav.data.title }}">
+                                <div class="card-body">
+                                    <h6>{{ fav.data.title }}</h6>
+                                    <p>{{ fav.data.date }}</p>
+                            {% elif fav.type == 'mars' %}
+                                <img src="{{ fav.data.img_src }}" class="card-img-top" alt="Mars Photo">
+                                <div class="card-body">
+                                    <h6>Camera: {{ fav.data.camera.full_name }}</h6>
+                                    <p>{{ fav.data.earth_date }}</p>
+                            {% elif fav.type == 'earth' %}
+                                <img src="{{ fav.data.image_url }}" class="card-img-top" alt="Earth Imagery">
+                                <div class="card-body">
+                                    <h6>Coordinates: {{ fav.id.split('-')[0] }}° N, {{ fav.id.split('-')[1] }}° E</h6>
+                                    <p>{{ fav.id.split('-')[2] }}</p>
+                            {% elif fav.type == 'asteroid' %}
+                                <div class="card-body">
+                                    <h6>{{ fav.data.name }}</h6>
+                                    <p>Diameter: {{ ((fav.data.estimated_diameter.meters.estimated_diameter_min + fav.data.estimated_diameter.meters.estimated_diameter_max) / 2)|round(2) }} m</p>
+                                    <p>Approach: {{ fav.data.close_approach_data[0].close_approach_date }}</p>
+                            {% elif fav.type == 'library' %}
+                                <img src="{{ fav.data.links[0].href }}" class="card-img-top" alt="{{ fav.data.data[0].title }}">
+                                <div class="card-body">
+                                    <h6>{{ fav.data.data[0].title }}</h6>
+                                    <p>{{ fav.data.data[0].date_created|datetimeformat if fav.data.data[0].date_created else '' }}</p>
+                            {% elif fav.type == 'satellite' %}
+                                <div class="card-body">
+                                    <h6>{{ fav.data.name }}</h6>
+                                    <p>ID: {{ fav.data.satelliteId }}</p>
+                            {% elif fav.type == 'space_weather' %}
+                                <div class="card-body">
+                                    <h6>CME Event</h6>
+                                    <p>Start: {{ fav.data.startTime or 'N/A' }}</p>
+                                    <p>Speed: {{ fav.data.cmeAnalyses[0].speed if fav.data.cmeAnalyses and fav.data.cmeAnalyses[0] else 'N/A' }} km/s</p>
+                            {% endif %}
+                                </div>
+                            <div class="card-footer">
+                                <button class="btn btn-danger btn-sm remove-favorite" data-type="{{ fav.type }}" data-id="{{ fav.id }}">
+                                    <i class="fas fa-trash"></i> Xóa khỏi yêu thích
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="col-12">Chưa có mục yêu thích nào.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/favorites.js') }}"></script>
+{% endblock %}

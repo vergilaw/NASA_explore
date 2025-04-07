@@ -1,0 +1,31 @@
+<div class="tab-pane fade show active" id="apod" role="tabpanel">
+    <div class="card mt-3">
+        <div class="card-header">
+            <h5>Ảnh Thiên văn trong ngày (APOD)</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="apod-date" class="form-label">Chọn ngày:</label>
+                    <input type="date" class="form-control" id="apod-date">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary" id="fetch-apod">Tìm kiếm</button>
+                </div>
+            </div>
+            <div id="apod-result">
+                <div class="img-container">
+                    <img id="apod-image" class="img-fluid" src="" alt="Astronomy Picture of the Day">
+                </div>
+                <h4 id="apod-title"></h4>
+                <p><small id="apod-date-display"></small></p>
+                <p id="apod-explanation"></p>
+                <div class="mt-3">
+                    <button class="btn btn-outline-success btn-sm" id="add-apod-favorite"><i class="fas fa-heart"></i> Thêm vào yêu thích</button>
+                    <button class="btn btn-outline-info btn-sm" id="add-apod-note"><i class="fas fa-sticky-note"></i> Thêm ghi chú</button>
+                    <div id="apod-note-container" class="mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

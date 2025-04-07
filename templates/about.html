@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Giới thiệu - NASA Space Explorer{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Về NASA Space Explorer</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Mục đích dự án</h4>
+                <p>
+                    NASA Space Explorer là một ứng dụng web được xây dựng bằng Flask Python, 
+                    tận dụng các API mã nguồn mở của NASA để mang đến trải nghiệm tương tác 
+                    về khám phá vũ trụ. Dự án này được tạo ra nhằm mục đích giáo dục, 
+                    cho phép người dùng truy cập và khám phá dữ liệu không gian từ NASA 
+                    một cách thân thiện.
+                </p>
+                
+                <h4>Các API được sử dụng</h4>
+                <ul>
+                    <li><strong>APOD (Astronomy Picture of the Day):</strong> Hiển thị hình ảnh thiên văn độc đáo mỗi ngày kèm theo mô tả.</li>
+                    <li><strong>Mars Rover Photos:</strong> Xem hình ảnh từ các tàu thăm dò Curiosity, Opportunity, Spirit và Perseverance.</li>
+                    <li><strong>Earth Imagery:</strong> Xem hình ảnh vệ tinh của Trái Đất tại các tọa độ cụ thể.</li>
+                    <li><strong>Asteroid NeoWs:</strong> Theo dõi các tiểu hành tinh gần Trái Đất và thông tin về mức độ nguy hiểm.</li>
+                    <li><strong>NASA Image and Video Library:</strong> Tìm kiếm trong kho lưu trữ phong phú các hình ảnh và video không gian.</li>
+                    <li><strong>DONKI (Space Weather):</strong> Cung cấp dữ liệu về các hiện tượng thời tiết không gian.</li>
+                </ul>
+                
+                <h4>Công nghệ sử dụng</h4>
+                <ul>
+                    <li><strong>Backend:</strong> Python, Flask, Requests</li>
+                    <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript, Bootstrap 5</li>
+                    <li><strong>APIs:</strong> NASA Open APIs</li>
+                </ul>
+                
+                <h4>Hướng dẫn sử dụng</h4>
+                <p>
+                    Để sử dụng đầy đủ các tính năng của ứng dụng, bạn nên đăng ký API key của riêng mình 
+                    từ <a href="https://api.nasa.gov/" target="_blank">NASA API Portal</a>. API key mặc định (DEMO_KEY) 
+                    có giới hạn số lượng yêu cầu, có thể gây ra lỗi "rate limit exceeded" nếu sử dụng quá mức.
+                </p>
+                <p>
+                    Sau khi có API key, bạn có thể thêm nó vào tệp <code>.env</code> trong thư mục gốc của dự án.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h5>Liên kết hữu ích</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush bg-dark">
+                            <li class="list-group-item bg-dark">
+                                <a href="https://api.nasa.gov/" target="_blank">NASA API Portal</a>
+                            </li>
+                            <li class="list-group-item bg-dark">
+                                <a href="https://www.nasa.gov/" target="_blank">NASA Official Website</a>
+                            </li>
+                            <li class="list-group-item bg-dark">
+                                <a href="https://www.flask.palletsprojects.com/" target="_blank">Flask Documentation</a>
+                            </li>
+                            <li class="list-group-item bg-dark">
+                                <a href="https://github.com/nasa/api-docs" target="_blank">NASA API Documentation</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mt-4 bg-dark">
+                    <div class="card-header">
+                        <h5>API Rate Limits</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Demo Key:</strong></p>
+                        <ul>
+                            <li>Hourly Limit: 30 requests per IP address</li>
+                            <li>Daily Limit: 50 requests per IP address</li>
+                        </ul>
+                        <p><strong>API Key:</strong></p>
+                        <ul>
+                            <li>Hourly Limit: 1,000 requests</li>
+                            <li>Daily Limit: Không giới hạn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h2>Hướng dẫn lập trình với NASA API</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            Dưới đây là một số ví dụ về cách sử dụng NASA API trong các ứng dụng của bạn:
+        </p>
+        
+        <h5>Ví dụ Python đơn giản:</h5>
+        <pre class="bg-dark text-light p-3 rounded"><code>
+import requests
+
+# Lấy Astronomy Picture of the Day
+api_key = "YOUR_API_KEY"
+url = f"https://api.nasa.gov/planetary/apod?api_key={api_key}"
+    
+response = requests.get(url)
+data = response.json()
+    
+print(f"Title: {data['title']}")
+print(f"Date: {data['date']}")
+print(f"Explanation: {data['explanation']}")
+print(f"Image URL: {data['url']}")
+        </code></pre>
+        
+        <h5>Ví dụ JavaScript đơn giản:</h5>
+        <pre class="bg-dark text-light p-3 rounded"><code>
+// Lấy dữ liệu về tiểu hành tinh gần Trái Đất
+const API_KEY = "YOUR_API_KEY";
+const startDate = "2023-01-01";
+const endDate = "2023-01-07";
+const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=${API_KEY}`;
+
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(`Total asteroids: ${data.element_count}`);
+        
+        // Hiển thị số lượng tiểu hành tinh mỗi ngày
+        Object.keys(data.near_earth_objects).forEach(date => {
+            const asteroids = data.near_earth_objects[date];
+            console.log(`${date}: ${asteroids.length} asteroids`);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+        </code></pre>
+    </div>
+</div>
+{% endblock %}
