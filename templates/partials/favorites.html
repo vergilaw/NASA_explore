@@ -48,6 +48,41 @@
                                     <p>Start: {{ fav.data.startTime or 'N/A' }}</p>
                                     <p>Speed: {{ fav.data.cmeAnalyses[0].speed if fav.data.cmeAnalyses and fav.data.cmeAnalyses[0] else 'N/A' }} km/s</p>
                             {% endif %}
+                                    <!-- Note Container -->
+                                    <div class="note-container mt-3" data-type="{{ fav.type }}" data-id="{{ fav.id }}">
+                                        <!-- Notes will be loaded here via JavaScript -->
+                                    </div>
+
+                                    <!-- Note Editor -->
+                                    <div class="note-editor mt-3" data-type="{{ fav.type }}" data-id="{{ fav.id }}">
+                                        <div class="form-group">
+                                            <label for="note-textarea-{{ fav.type }}-{{ fav.id }}">Your Note:</label>
+                                            <textarea
+                                                class="form-control note-textarea"
+                                                id="note-textarea-{{ fav.type }}-{{ fav.id }}"
+                                                data-type="{{ fav.type }}"
+                                                data-id="{{ fav.id }}"
+                                                rows="3"
+                                            ></textarea>
+                                        </div>
+                                        <div class="mt-2 d-flex">
+                                            <button
+                                                class="btn btn-outline-primary btn-sm add-note-btn"
+                                                data-type="{{ fav.type }}"
+                                                data-id="{{ fav.id }}"
+                                            >
+                                                <i class="fas fa-save"></i> Save Note
+                                            </button>
+                                            <button
+                                                class="btn btn-outline-secondary btn-sm ml-2 cancel-edit-btn"
+                                                data-type="{{ fav.type }}"
+                                                data-id="{{ fav.id }}"
+                                                style="display: none; margin-left: 5px;"
+                                            >
+                                                <i class="fas fa-times"></i> Cancel
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             <div class="card-footer">
                                 <button class="btn btn-danger btn-sm remove-favorite" data-type="{{ fav.type }}" data-id="{{ fav.id }}">
@@ -63,6 +98,34 @@
         </div>
     </div>
 </div>
+
+<style>
+    .note-editor, .note-container {
+        background-color: rgba(40, 40, 80, 0.3);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .note-text {
+        background-color: rgba(60, 60, 100, 0.3);
+        padding: 8px;
+        border-radius: 4px;
+        white-space: pre-wrap;
+    }
+
+    .form-control {
+        background-color: rgba(30, 30, 50, 0.8);
+        border: 1px solid rgba(100, 100, 150, 0.3);
+        color: #fff;
+    }
+
+    .form-control:focus {
+        background-color: rgba(40, 40, 70, 0.9);
+        border-color: rgba(100, 150, 255, 0.5);
+        color: #fff;
+    }
+</style>
 {% endblock %}
 
 {% block scripts %}

@@ -39,8 +39,9 @@ def about():
 
 @app.route('/favorites')
 def favorites_page():
-    favorites = get_favorites()  # Chỉ truyền favorites, không cần notes
-    return render_template('partials/favorites.html', favorites=favorites)
+    favorites = get_favorites()
+    notes = get_notes()  # Get notes to display them with favorites
+    return render_template('partials/favorites.html', favorites=favorites, notes=notes)
 
 # Error handlers
 @app.errorhandler(404)
@@ -121,36 +122,36 @@ def get_favorites_route():
     favorites = get_favorites()
     return jsonify(favorites)
 
-# Notes API (giữ nguyên nhưng không dùng trong Favorites)
-# @app.route('/api/notes', methods=['POST'])
-# def add_note_route():
-#     data = request.get_json()
-#     item_type = data.get('type')
-#     item_id = data.get('id')
-#     note_text = data.get('note')
-#     if not item_type or not item_id or not note_text:
-#         return jsonify({'error': 'Missing required fields'}), 400
-#     add_note(item_type, item_id, note_text)
-#     return jsonify({'message': 'Note added'}), 201
-#
-# @app.route('/api/notes/<item_type>/<item_id>', methods=['PUT'])
-# def update_note_route(item_type, item_id):
-#     data = request.get_json()
-#     note_text = data.get('note')
-#     if not note_text:
-#         return jsonify({'error': 'Missing note text'}), 400
-#     update_note(item_type, item_id, note_text)
-#     return jsonify({'message': 'Note updated'}), 200
-#
-# @app.route('/api/notes/<item_type>/<item_id>', methods=['DELETE'])
-# def delete_note_route(item_type, item_id):
-#     delete_note(item_type, item_id)
-#     return jsonify({'message': 'Note deleted'}), 200
-#
-# @app.route('/api/notes', methods=['GET'])
-# def get_notes_route():
-#     notes = get_notes()
-#     return jsonify(notes)
+# Notes API - Uncommented and active
+@app.route('/api/notes', methods=['POST'])
+def add_note_route():
+    data = request.get_json()
+    item_type = data.get('type')
+    item_id = data.get('id')
+    note_text = data.get('note')
+    if not item_type or not item_id or not note_text:
+        return jsonify({'error': 'Missing required fields'}), 400
+    add_note(item_type, item_id, note_text)
+    return jsonify({'message': 'Note added'}), 201
+
+@app.route('/api/notes/<item_type>/<item_id>', methods=['PUT'])
+def update_note_route(item_type, item_id):
+    data = request.get_json()
+    note_text = data.get('note')
+    if not note_text:
+        return jsonify({'error': 'Missing note text'}), 400
+    update_note(item_type, item_id, note_text)
+    return jsonify({'message': 'Note updated'}), 200
+
+@app.route('/api/notes/<item_type>/<item_id>', methods=['DELETE'])
+def delete_note_route(item_type, item_id):
+    delete_note(item_type, item_id)
+    return jsonify({'message': 'Note deleted'}), 200
+
+@app.route('/api/notes', methods=['GET'])
+def get_notes_route():
+    notes = get_notes()
+    return jsonify(notes)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
